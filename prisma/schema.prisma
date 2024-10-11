@@ -1,0 +1,44 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Listing {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  price       Float
+  location    String
+  image       String
+  latitude    Float
+  longitude   Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  featured    Boolean  @default(false)
+  latest      Boolean  @default(false)
+}
+
+model Blog {
+  id        Int      @id @default(autoincrement())
+  title     String
+  slug      String   @unique
+  content   String
+  excerpt   String
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        Int      @id @default(autoincrement())
+  name      String
+  avatar    String
+  message   String
+  rating    Int
+  createdAt DateTime @default(now())
+}
