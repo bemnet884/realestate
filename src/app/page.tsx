@@ -12,15 +12,17 @@ import MarketInsights from './(components)/market-insights';
 export default function HomePage() {
   return (
     <div>
+      {/*
       <HeroSection />
       <FeaturedListings />
-      {/*<InteractiveMap />*/}
+     <InteractiveMap />
       <AboutUs />
       <ServicesOffered />
       <LatestListings />
       <MarketInsights />
       <Testimonials />
       <CTASections />
+      */}
     </div>
   );
 }
