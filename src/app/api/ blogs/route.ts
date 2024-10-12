@@ -1,8 +1,8 @@
-// src/pages/api/blogs.js
+import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/utils/prisma';
 
-export default async function handler(req, res) {
-  const { method, query, body } = req;
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { method } = req;
 
   switch (method) {
     case 'GET':
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const newBlog = await prisma.blog.create({
-          data: body,
+          data: req.body,
         });
         res.status(201).json(newBlog);
       } catch (error) {

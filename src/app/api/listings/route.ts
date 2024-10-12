@@ -1,14 +1,14 @@
-// src/pages/api/listings.js
+import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/utils/prisma';
 
-export default async function handler(req, res) {
-  const { method, query, body } = req;
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const { method, query } = req;
 
   switch (method) {
     case 'GET':
       try {
-        const { featured, latest } = query;
-        let listings = await prisma.listing.findMany({
+        const { featured, latest } = query as { featured?: string; latest?: string };
+        const listings = await prisma.listing.findMany({
           where: {
             featured: featured === 'true' ? true : undefined,
             latest: latest === 'true' ? true : undefined,
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
     case 'POST':
       try {
         const newListing = await prisma.listing.create({
-          data: body,
+          data: req.body,
         });
         res.status(201).json(newListing);
       } catch (error) {
