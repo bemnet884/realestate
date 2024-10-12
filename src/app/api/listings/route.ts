@@ -19,6 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
         res.status(200).json(listings);
       } catch (error) {
+        console.error(error); // Log the error
         res.status(500).json({ error: 'Failed to fetch listings.' });
       }
       break;
@@ -30,6 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
         res.status(201).json(newListing);
       } catch (error) {
+        console.error(error); // Log the error
         res.status(500).json({ error: 'Failed to create listing.' });
       }
       break;

@@ -15,7 +15,7 @@ const Header = () => {
       <div>
         <div>
           {/* Logo */}
-          <Link href="/" className='bg-black'>
+          <Link href="/">
             RealEstate
           </Link>
         </div>
@@ -46,8 +46,10 @@ const Header = () => {
             </Link>
           </nav></div>
 
+
+
         {/* Contact Info and User Account */}
-        <div className='hidden md:flex'>
+        <div>
           <a href="tel:+1234567890" >
             +1 (234) 567-890
           </a>

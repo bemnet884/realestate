@@ -2,7 +2,6 @@ import { PrismaClient } from '@prisma/client';
 
 // Extend the global object to include the prisma instance
 declare global {
-  // This will ensure global.prisma can be used
   var prisma: PrismaClient | undefined;
 }
 

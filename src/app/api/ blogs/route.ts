@@ -14,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
         res.status(200).json(blogs);
       } catch (error) {
+        console.error(error); // Log the error for debugging
         res.status(500).json({ error: 'Failed to fetch blogs.' });
       }
       break;
@@ -25,6 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
         res.status(201).json(newBlog);
       } catch (error) {
+        console.error(error); // Log the error
         res.status(500).json({ error: 'Failed to create blog.' });
       }
       break;

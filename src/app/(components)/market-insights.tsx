@@ -1,8 +1,9 @@
-'use client'
-// src/components/MarketInsights.tsx
+'use client';
+
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Image from 'next/image';
 
 // Define the structure of a blog post
 interface Blog {
@@ -32,10 +33,12 @@ const MarketInsights = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {blogs.map((blog) => (
             <div key={blog.id} className="bg-white rounded shadow">
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.title}
-                className="rounded-t w-full h-48 object-cover"
+                width={500} // Set appropriate width
+                height={300} // Set appropriate height
+                className="rounded-t object-cover"
               />
               <div className="p-4">
                 <h3 className="text-xl font-semibold">{blog.title}</h3>
@@ -47,7 +50,6 @@ const MarketInsights = () => {
             </div>
           ))}
         </div>
-        {/* Include infographics or videos as needed */}
       </div>
     </section>
   );

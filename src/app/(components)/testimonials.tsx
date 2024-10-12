@@ -1,8 +1,9 @@
-'use client'
-// src/components/Testimonials.tsx
+'use client';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
+import Image from 'next/image';
 
 // Define the structure of a testimonial
 interface Testimonial {
@@ -14,13 +15,11 @@ interface Testimonial {
 }
 
 const Testimonials = () => {
-  // Initialize the state with an empty array of type Testimonial[]
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
-    // Fetch testimonials from your API
     axios
-      .get<Testimonial[]>('/api/testimonials') // Ensure the response is typed as an array of Testimonial
+      .get<Testimonial[]>('/api/testimonials')
       .then((response) => setTestimonials(response.data))
       .catch((error) => console.error(error));
   }, []);
@@ -33,19 +32,20 @@ const Testimonials = () => {
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="p-4 bg-gray-100 rounded shadow">
               <div className="flex items-center mb-4">
-                <img
+                <Image
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full mr-4"
+                  width={48} // Set width for the avatar
+                  height={48} // Set height for the avatar
+                  className="rounded-full"
                 />
-                <div>
+                <div className="ml-4">
                   <h3 className="text-xl font-semibold">{testimonial.name}</h3>
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <FaStar
                         key={i}
-                        className={`h-4 w-4 ${i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'
-                          }`}
+                        className={i < testimonial.rating ? 'text-yellow-400' : 'text-gray-300'}
                       />
                     ))}
                   </div>
